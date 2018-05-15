@@ -29,7 +29,7 @@ var teamDragons: [[String : Any]] = []
 var teamRaptors: [[String : Any]] = []
 var letters: [String] = []
 
-// Checking theLeague array for players that are experienced and inexperienced and appending them to their corresponding arrays
+// Checking players array for players that are experienced and inexperienced and appending them to their corresponding arrays
 for player in players {
     if player["isExperienced"] as? Bool == true {
         experiencedPlayers.append(player)
@@ -39,34 +39,26 @@ for player in players {
 }
 
 // Going through the range of experiencedPlayers array and assigning them to teams evenly: 3 experienced players on each team
-for index in 0...experiencedPlayers.count - 1 {
-    switch index {
-    case 0: teamSharks.append(experiencedPlayers[index])
-    case 1: teamDragons.append(experiencedPlayers[index])
-    case 2: teamRaptors.append(experiencedPlayers[index])
-    case 3: teamSharks.append(experiencedPlayers[index])
-    case 4: teamDragons.append(experiencedPlayers[index])
-    case 5: teamRaptors.append(experiencedPlayers[index])
-    case 6: teamSharks.append(experiencedPlayers[index])
-    case 7: teamDragons.append(experiencedPlayers[index])
-    case 8: teamRaptors.append(experiencedPlayers[index])
-    default: break
+// Updated logic to flow through the count of the teams instead of a switch statement
+for player in experiencedPlayers {
+    if teamSharks.count < teamDragons.count {
+        teamSharks.append(player)
+    } else if teamDragons.count < teamRaptors.count {
+        teamDragons.append(player)
+    } else {
+        teamRaptors.append(player)
     }
 }
 
 // Going through the range of inexperiencedPlayers array and assigning them to teams evenly: 3 inexperienced players on each team
-for index in 0...inexperiencedPlayers.count - 1 {
-    switch index {
-    case 0: teamSharks.append(inexperiencedPlayers[index])
-    case 1: teamDragons.append(inexperiencedPlayers[index])
-    case 2: teamRaptors.append(inexperiencedPlayers[index])
-    case 3: teamSharks.append(inexperiencedPlayers[index])
-    case 4: teamDragons.append(inexperiencedPlayers[index])
-    case 5: teamRaptors.append(inexperiencedPlayers[index])
-    case 6: teamSharks.append(inexperiencedPlayers[index])
-    case 7: teamDragons.append(inexperiencedPlayers[index])
-    case 8: teamRaptors.append(inexperiencedPlayers[index])
-    default: break
+// Updated logic to flow through the count of the teams instead of a switch statement
+for player in inexperiencedPlayers {
+    if teamSharks.count < teamDragons.count {
+        teamSharks.append(player)
+    } else if teamDragons.count < teamRaptors.count {
+        teamDragons.append(player)
+    } else {
+        teamRaptors.append(player)
     }
 }
 
